@@ -1,0 +1,17 @@
+{
+  "name": "greateastern-automation",
+  "version": "1.0.0",
+  "description": "TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://TechDynamism@dev.azure.com/TechDynamism/Great%20Eastern/_git/GreatEastern-Automation"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.37.1"
+  }
+}
