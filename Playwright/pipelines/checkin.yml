@@ -12,6 +12,9 @@ steps:
     versionSpec: '14.x'
   displayName: 'Install Node.js'
 
+- script: cd Playwright && npx playwright install
+  displayName: 'Install Playwright browsers'
+
 - script: cd Playwright && npm install
   displayName: 'Install Dependencies'
   

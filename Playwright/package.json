@@ -4,7 +4,7 @@
   "description": "TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project.",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test"
+    "test": "npx playwright test --reporter=list"
   },
   "repository": {
     "type": "git",
@@ -13,10 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@playwright/test": "^1.37.1"
-  },
   "dependencies": {
-    "playwright": "^1.37.1"
+    "@playwright/test": "^1.37.1"
   }
 }
