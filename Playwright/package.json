@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test"
+  },
   "repository": {
     "type": "git",
     "url": "https://TechDynamism@dev.azure.com/TechDynamism/Great%20Eastern/_git/GreatEastern-Automation"
