@@ -1,5 +1,4 @@
-trigger:
-- main
+trigger: none
 
 pool:
   vmImage: ubuntu-latest
@@ -12,11 +11,11 @@ steps:
     versionSpec: '14.x'
   displayName: 'Install Node.js'
 
-- script: cd Playwright && npx playwright install
+- script: npx playwright install
   displayName: 'Install Playwright browsers'
 
-- script: cd Playwright && npm install
+- script: npm install
   displayName: 'Install Dependencies'
   
-- script: cd Playwright && npm test
+- script: npm run smoke
   displayName: 'Run Playwright tests'
