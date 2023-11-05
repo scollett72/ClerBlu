@@ -1,0 +1,29 @@
+trigger: none
+
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily midnight build
+  branches:
+    include:
+    - main
+  always: true  # this flag ensures that the build runs even if there have been no changes to the codebase
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- checkout: self
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+  displayName: 'Install Node.js'
+
+- script: npx playwright install
+  displayName: 'Install Playwright browsers'
+
+- script: npm install
+  displayName: 'Install Dependencies'
+  
+- script: npm run nightly
+  displayName: 'Run Playwright tests'

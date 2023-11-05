@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- checkout: self
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '14.x'
+  displayName: 'Install Node.js'
+
+- script: npx playwright install
+  displayName: 'Install Playwright browsers'
+
+- script: npm install
+  displayName: 'Install Dependencies'
+  
+- script: npm run test
+  displayName: 'Run Playwright tests'

@@ -20,14 +20,27 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  outputDir: './test-results',
   reporter: 'html',
+
+  //Set timeout
+  globalTimeout: 10 * 60 * 1000,
+
+  timeout: 10 * 60 * 1000,
+
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://dev.techdynamism.com',
+    baseURL: 'https://dev.techdynamism.com/', // TODO: pass in as param
+    ignoreHTTPSErrors: true,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    //Capture Screenshot on failure
+    screenshot: 'only-on-failure',
+
+    actionTimeout: 10 * 60 * 1000,
+    navigationTimeout: 10 * 60 * 1000,
   },
 
   /* Configure projects for major browsers */
