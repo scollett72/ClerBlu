@@ -1,6 +1,26 @@
+interface Login {
+  username: string;
+  password: string;
+}
+
+interface Logins {
+  testUser: Login;
+
+}
+
+interface Config {
+  logins: Logins;
+}
+
 import { type Locator, type Page } from '@playwright/test';
 import { BasePage } from './base-page';
+import fs from 'fs/promises';
 
+async function getConfig(): Promise<Config> {
+  const configPath = ('./config.json');
+  const configFile = await fs.readFile(configPath, 'utf8');
+  return JSON.parse(configFile) as Config;
+}
 export class LoginPage extends BasePage {
     
     readonly page: Page;
@@ -18,16 +38,20 @@ export class LoginPage extends BasePage {
       this.lblLoginInfo = page.locator('.acct-quick-view-content');
     }
 
-    async login(username, password) {
+    async login() {
+      const config = await getConfig();
+      const login = config.logins;
       await this.page.goto('/massanutten/portal#/portaluser/login/0/0?returnUrl=%2Faccount%2Finformation');
 
       await this.waitUntilLoaded();
       
-      await this.txtUserName.type(username);
-      await this.txtPassword.type(password);
+      await this.txtUserName.type(login.testUser.username);
+      await this.txtPassword.type(login.testUser.password);
 
       await this.btnLogin.click();
 
       await this.page.waitForNavigation({timeout: 0});
     }
+
+   
 }

@@ -5,12 +5,9 @@ import { AccountPage } from '../../pages/account-page';
 
 test('Can Login - @smoke @nightly', async ({ page }) => {
   const loginPage = new LoginPage(page);
- 
-  await loginPage.login(
-    'test+Automation@techdynamism.com',
-    'Password123%'
-  )
- 
+
+
+  await loginPage.login();
   const accountPage = new AccountPage(page);
 
   const ownerName = await accountPage.getOwnerName();

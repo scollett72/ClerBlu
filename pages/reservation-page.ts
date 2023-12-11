@@ -46,7 +46,7 @@ export class ReservationPage extends BasePage {
       
       }
 
-    async cancelReservation(){
+    async cancelLatestReservation(){
       await this.page.goto('massanutten/#/reservations/information');
       await this.btnDetails.click();
       await this.btnCancel.click();
