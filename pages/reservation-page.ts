@@ -13,6 +13,7 @@ export class ReservationPage extends BasePage {
     readonly btnDetails: Locator;
     readonly btnCancel: Locator;
 
+
     constructor(page: Page) {
       super(page);
       this.page = page;
@@ -24,6 +25,9 @@ export class ReservationPage extends BasePage {
       this.lblConfirmation = page.locator(this.lblConfirmationText);
       this.btnDetails = page.locator('i.glyphicon.glyphicon-triangle-right');
       this.btnCancel = page.locator("[ng-click='cancelReservation(reservation.ReservationID)']");
+  
+
+      
 
     }
 
