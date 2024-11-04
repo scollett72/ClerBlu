@@ -41,7 +41,7 @@ export class LoginPage extends BasePage {
     async login() {
       const config = await getConfig();
       const login = config.logins;
-      await this.page.goto('/massanutten/portal#/portaluser/login/0/0?returnUrl=%2Faccount%2Finformation');
+      await this.page.goto('https://d32vetlwn56zps.cloudfront.net/dashboard');
 
       await this.waitUntilLoaded();
       

@@ -14,8 +14,8 @@ export class  PaymentPage extends BasePage {
     readonly drpExpYear: Locator; 
     readonly txtBalance: string;
     readonly txtBalanceAmt: Locator;
-    readonly txtUpdatedBalance: string;
-    readonly txtUpdatedBalanceAmt: Locator;
+    readonly txtNewBalance: string;
+    readonly txtNewBalanceAmt: Locator;
 
     constructor(page: Page) {
       super(page);
@@ -31,17 +31,17 @@ export class  PaymentPage extends BasePage {
       this.drpExpYear = page.locator('#cboExpirationYear');
       this.txtBalance = ("td[contains(text(),'$')]");
       this.txtBalanceAmt = page.locator(this.txtBalance);
-      this.txtUpdatedBalance = ("div[contains(text(),'$')]");
-      this.txtUpdatedBalanceAmt = page.locator(this.txtBalance);
+      this.txtNewBalance = ("div[contains(text(),'$')]");
+      this.txtNewBalanceAmt = page.locator(this.txtNewBalance);
 
     }
 
-    async makePayment() {
+    async makePayment(amount: number) {
       await this.page.goto('/massanutten/portal#/payments/information');
       await this.waitUntilLoaded();
       await this.btnPay.click();
       await this.waitUntilLoaded();
-      await this.txtOtherAmount.fill('1');
+      await this.txtOtherAmount.fill(amount.toString());
       await this.btnContinue.click();
       await this.page.waitForNavigation({timeout: 0}); 
       await this.txtCreditCard.fill('342877777777705');
@@ -57,15 +57,15 @@ export class  PaymentPage extends BasePage {
      async getBalance() {
       await this.waitUntilLoaded();
       await this.page.waitForSelector(this.txtBalance, {timeout: 0});
-      return await this.txtBalanceAmt.evaluate(element => (element as HTMLElement).innerText);
+      //return await this.txtBalanceAmt.evaluate(element => (element as HTMLElement).innerText);
 
        }
 //This could be the function to get the updated balance amount maybe?  
 //But I'm stuck on comparing the two
        async getNewBalance() {
         await this.waitUntilLoaded();
-        await this.page.waitForSelector(this.txtUpdatedBalance, {timeout: 0});
-        return await this.txtUpdatedBalanceAmt.evaluate(element => (element as HTMLElement).innerText);
+        await this.page.waitForSelector(this.txtNewBalance, {timeout: 0});
+       // return await this.txtNewBalanceAmt.evaluate(element => (element as HTMLElement).innerText);
   
          }
       // TODO: Confirm balance updated

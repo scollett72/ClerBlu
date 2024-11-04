@@ -9,12 +9,13 @@ import { PaymentPage } from '../pages/payment-page';
     await loginPage.login();
 
     const paymentPage = new PaymentPage(page);
-  
-    await paymentPage.makePayment();
+    const originalBalance = await paymentPage.getBalance();
+    const amount = 1;
+    await paymentPage.makePayment(amount);
 
-    const balance = await paymentPage.getBalance();
+    const newBalance = await paymentPage.getNewBalance();
     
     //How do I do the comparison here? I don't know where to declare the beforePayment variable to compare against afterPayment amount
-    await expect(balance).toBe('');
+    await expect(newBalance).toBe(originalBalance - amount);
   }
 )
